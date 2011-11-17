@@ -1,0 +1,167 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.6	//
+AA	myLICM.cpp	/^    AliasAnalysis *AA;       \/\/ Current AliasAnalysis information$/;"	m	struct:__anon6::MyHw2Pass	file:
+AST	myLICM.cpp	/^    AliasSetTracker &AST;$/;"	m	class:__anon7::LoopPromoter	file:
+AllocFn	LAMPProfiling.cpp	/^	Constant* AllocFn;$/;"	m	class:__anon3::LAMPProfiler	file:
+CallFn	LAMPProfiling.cpp	/^	Constant* CallFn;$/;"	m	class:__anon3::LAMPProfiler	file:
+Changed	myLICM.cpp	/^    bool Changed;            \/\/ Set to true when we change anything.$/;"	m	struct:__anon6::MyHw2Pass	file:
+CurAST	myLICM.cpp	/^    AliasSetTracker *CurAST; \/\/ AliasSet information for the current loop...$/;"	m	struct:__anon6::MyHw2Pass	file:
+CurLoop	myLICM.cpp	/^    Loop *CurLoop;           \/\/ The current loop we are working on...$/;"	m	struct:__anon6::MyHw2Pass	file:
+DEBUG_TYPE	myLICM.cpp	33;"	d	file:
+DT	myLICM.cpp	/^    DominatorTree *DT;       \/\/ Dominator Tree for the current Loop.$/;"	m	struct:__anon6::MyHw2Pass	file:
+DeallocFn	LAMPProfiling.cpp	/^	Constant* DeallocFn;$/;"	m	class:__anon3::LAMPProfiler	file:
+DepIT	myLICM.cpp	/^   std::set<std::pair<Instruction*, Instruction*>* >::iterator DepIT, DepITe;$/;"	m	struct:__anon6::MyHw2Pass	file:
+DepITe	myLICM.cpp	/^   std::set<std::pair<Instruction*, Instruction*>* >::iterator DepIT, DepITe;$/;"	m	struct:__anon6::MyHw2Pass	file:
+HoistRegion	myLICM.cpp	/^void MyHw2Pass::HoistRegion(DomTreeNode *N) {$/;"	f	class:MyHw2Pass
+Hoisted	myLICM.cpp	/^    set <Instruction*> Hoisted;$/;"	m	struct:__anon6::MyHw2Pass	file:
+ID	LAMPLoadProfile.cpp	/^    static char ID;$/;"	m	class:__anon1::LdStCallCounter	file:
+ID	LAMPLoadProfile.cpp	/^char LAMPBuildLoopMap::ID = 0;$/;"	m	class:LAMPBuildLoopMap	file:
+ID	LAMPLoadProfile.cpp	/^char LAMPLoadProfile::ID = 0;$/;"	m	class:LAMPLoadProfile	file:
+ID	LAMPLoadProfile.cpp	/^char LdStCallCounter::ID = 0;$/;"	m	class:LdStCallCounter	file:
+ID	LAMPProfiling.cpp	/^    static char ID;$/;"	m	class:__anon2::LdStCallCounter	file:
+ID	LAMPProfiling.cpp	/^    static char ID;$/;"	m	class:__anon3::LAMPProfiler	file:
+ID	LAMPProfiling.cpp	/^    static char ID;$/;"	m	class:__anon4::LAMPInit	file:
+ID	LAMPProfiling.cpp	/^    static char ID;$/;"	m	class:__anon5::LAMPLoopProfiler	file:
+ID	LAMPProfiling.cpp	/^char LAMPInit::ID = 0;$/;"	m	class:LAMPInit	file:
+ID	LAMPProfiling.cpp	/^char LAMPLoopProfiler::ID = 0;$/;"	m	class:LAMPLoopProfiler	file:
+ID	LAMPProfiling.cpp	/^char LAMPProfiler::ID = 0;$/;"	m	class:LAMPProfiler	file:
+ID	LAMPProfiling.cpp	/^char LdStCallCounter::ID = 0;$/;"	m	class:LdStCallCounter	file:
+ID	myLICM.cpp	/^    static char ID; \/\/ Pass identification, replacement for typeid$/;"	m	struct:__anon6::MyHw2Pass	file:
+ID	myLICM.cpp	/^char MyHw2Pass::ID = 0;$/;"	m	class:MyHw2Pass	file:
+IDIT	myLICM.cpp	/^   std::map<Instruction*, unsigned int>::iterator IDIT;$/;"	m	struct:__anon6::MyHw2Pass	file:
+IDInitFlag	LAMPProfiling.cpp	/^    	static bool IDInitFlag;$/;"	m	class:__anon5::LAMPLoopProfiler	file:
+IDInitFlag	LAMPProfiling.cpp	/^bool LAMPLoopProfiler::IDInitFlag = false;$/;"	m	class:LAMPLoopProfiler	file:
+IDtoCount	myLICM.cpp	/^   std::map<unsigned int, unsigned int> IDtoCount;$/;"	m	struct:__anon6::MyHw2Pass	file:
+IdInitFlag	LAMPLoadProfile.cpp	/^bool LAMPBuildLoopMap::IdInitFlag = false;$/;"	m	class:LAMPBuildLoopMap	file:
+IdToLoopMap_global	LAMPLoadProfile.cpp	/^static std::map<unsigned int, BasicBlock*> IdToLoopMap_global;$/;"	v	file:
+LAMPInit	LAMPProfiling.cpp	/^	LAMPInit() : ModulePass(ID) $/;"	f	class:__anon4::LAMPInit
+LAMPInit	LAMPProfiling.cpp	/^  class LAMPInit : public ModulePass {$/;"	c	namespace:__anon4	file:
+LAMPLoopProfiler	LAMPProfiling.cpp	/^	LAMPLoopProfiler() : LoopPass(ID) $/;"	f	class:__anon5::LAMPLoopProfiler
+LAMPLoopProfiler	LAMPProfiling.cpp	/^  class LAMPLoopProfiler : public LoopPass {$/;"	c	namespace:__anon5	file:
+LAMPProfiler	LAMPProfiling.cpp	/^	LAMPProfiler() : FunctionPass(ID) $/;"	f	class:__anon3::LAMPProfiler
+LAMPProfiler	LAMPProfiling.cpp	/^  class LAMPProfiler : public FunctionPass {$/;"	c	namespace:__anon3	file:
+LEVEL	Makefile	/^LEVEL=..\/..$/;"	m
+LI	myLICM.cpp	/^    LoopInfo      *LI;       \/\/ Current LoopInfo$/;"	m	struct:__anon6::MyHw2Pass	file:
+LIBRARYNAME	Makefile	/^LIBRARYNAME=hw2pass$/;"	m
+LOADABLE_MODULE	Makefile	/^LOADABLE_MODULE=1$/;"	m
+LdStCallCounter	LAMPLoadProfile.cpp	/^	LdStCallCounter(): ModulePass(ID)$/;"	f	class:__anon1::LdStCallCounter
+LdStCallCounter	LAMPLoadProfile.cpp	/^  class LdStCallCounter : public ModulePass {$/;"	c	namespace:__anon1	file:
+LdStCallCounter	LAMPProfiling.cpp	/^	LdStCallCounter(): ModulePass(ID)$/;"	f	class:__anon2::LdStCallCounter
+LdStCallCounter	LAMPProfiling.cpp	/^  class LdStCallCounter : public ModulePass {$/;"	c	namespace:__anon2	file:
+LoopExitBlocks	myLICM.cpp	/^    SmallVectorImpl<BasicBlock*> &LoopExitBlocks;$/;"	m	class:__anon7::LoopPromoter	file:
+LoopIT	myLICM.cpp	/^    std::map<BasicBlock*, std::set<std::pair<Instruction*, Instruction*>* > >::iterator LoopIT;$/;"	m	struct:__anon6::MyHw2Pass	file:
+LoopPromoter	myLICM.cpp	/^    LoopPromoter(Value *SP,$/;"	f	class:__anon7::LoopPromoter
+LoopPromoter	myLICM.cpp	/^  class LoopPromoter : public LoadAndStorePromoter {$/;"	c	namespace:__anon7	file:
+LoopToAliasSetMap	myLICM.cpp	/^    DenseMap<Loop*, AliasSetTracker*> LoopToAliasSetMap;$/;"	m	struct:__anon6::MyHw2Pass	file:
+LoopToIdMap_global	LAMPLoadProfile.cpp	/^static std::map<BasicBlock*, unsigned int> LoopToIdMap_global;$/;"	v	file:
+MyHw2Pass	myLICM.cpp	/^    MyHw2Pass() : LoopPass(ID) {$/;"	f	struct:__anon6::MyHw2Pass
+MyHw2Pass	myLICM.cpp	/^  struct MyHw2Pass : public LoopPass {$/;"	s	namespace:__anon6	file:
+PointerMustAliases	myLICM.cpp	/^    SmallPtrSet<Value*, 4> &PointerMustAliases;$/;"	m	class:__anon7::LoopPromoter	file:
+Preheader	myLICM.cpp	/^    BasicBlock *Preheader;   \/\/ The preheader block of the current loop...$/;"	m	struct:__anon6::MyHw2Pass	file:
+PromoteAliasSet	myLICM.cpp	/^void MyHw2Pass::PromoteAliasSet(AliasSet &AS) {$/;"	f	class:MyHw2Pass
+SinkRegion	myLICM.cpp	/^void MyHw2Pass::SinkRegion(DomTreeNode *N) {$/;"	f	class:MyHw2Pass
+SomePtr	myLICM.cpp	/^    Value *SomePtr;  \/\/ Designated pointer to store to.$/;"	m	class:__anon7::LoopPromoter	file:
+TD	LAMPProfiling.cpp	/^	TargetData* TD;$/;"	m	class:__anon3::LAMPProfiler	file:
+addAliasChecks	myLICM.cpp	/^void MyHw2Pass::addAliasChecks()$/;"	f	class:MyHw2Pass
+addToReverseMap	myLICM.cpp	/^void MyHw2Pass::addToReverseMap(Instruction *I)$/;"	f	class:MyHw2Pass
+aliasCount	myLICM.cpp	/^   unsigned int aliasCount;$/;"	m	struct:__anon6::MyHw2Pass	file:
+buildLampMap	myLICM.cpp	/^void MyHw2Pass::buildLampMap(BasicBlock* header)$/;"	f	class:MyHw2Pass
+canSinkOrHoistInst	myLICM.cpp	/^bool MyHw2Pass::canSinkOrHoistInst(Instruction &I) {$/;"	f	class:MyHw2Pass
+checkOperands	myLICM.cpp	/^bool MyHw2Pass::checkOperands(Instruction *I)$/;"	f	class:MyHw2Pass
+cloneBasicBlockAnalysis	myLICM.cpp	/^void MyHw2Pass::cloneBasicBlockAnalysis(BasicBlock *From, BasicBlock *To, Loop *L) {$/;"	f	class:MyHw2Pass
+cloneIT	myLICM.cpp	/^    map <Instruction*, vector<Instruction*> >::iterator cloneIT, cloneITe;$/;"	m	struct:__anon6::MyHw2Pass	file:
+cloneITe	myLICM.cpp	/^    map <Instruction*, vector<Instruction*> >::iterator cloneIT, cloneITe;$/;"	m	struct:__anon6::MyHw2Pass	file:
+conditionalHoist	myLICM.cpp	/^bool MyHw2Pass::conditionalHoist(Instruction &I)$/;"	f	class:MyHw2Pass
+countIT	myLICM.cpp	/^   std::map<unsigned int, unsigned int>::iterator countIT, countITe;$/;"	m	struct:__anon6::MyHw2Pass	file:
+countITe	myLICM.cpp	/^   std::map<unsigned int, unsigned int>::iterator countIT, countITe;$/;"	m	struct:__anon6::MyHw2Pass	file:
+createLAMPBuildLoopMapPass	LAMPLoadProfile.cpp	/^LoopPass *llvm::createLAMPBuildLoopMapPass() { return new LAMPBuildLoopMap(); }$/;"	f	class:llvm
+createLAMPInitPass	LAMPProfiling.cpp	/^ModulePass *llvm::createLAMPInitPass() { return new LAMPInit(); }$/;"	f	class:llvm
+createLAMPLoopProfilerPass	LAMPProfiling.cpp	/^LoopPass *llvm::createLAMPLoopProfilerPass() { return new LAMPLoopProfiler(); }$/;"	f	class:llvm
+createLAMPProfilerPass	LAMPProfiling.cpp	/^FunctionPass *llvm::createLAMPProfilerPass() { return new LAMPProfiler(); }$/;"	f	class:llvm
+createLampDeclarations	LAMPProfiling.cpp	/^void LAMPProfiler::createLampDeclarations(Module* M)$/;"	f	class:LAMPProfiler
+createLdStCallCounter	LAMPProfiling.cpp	/^ModulePass *llvm::createLdStCallCounter() {$/;"	f	class:llvm
+createMyHw2Pass	myLICM.cpp	/^    Pass* createMyHw2Pass() { return new MyHw2Pass();}$/;"	f	namespace:llvm
+createRedoBlocks	myLICM.cpp	/^void MyHw2Pass::createRedoBlocks()$/;"	f	class:MyHw2Pass
+currList	myLICM.cpp	/^    vector <Instruction *> currList;$/;"	m	struct:__anon6::MyHw2Pass	file:
+currLoad	myLICM.cpp	/^    Instruction *currLoad; \/\/current load list you are building$/;"	m	struct:__anon6::MyHw2Pass	file:
+deleteAnalysisValue	myLICM.cpp	/^void MyHw2Pass::deleteAnalysisValue(Value *V, Loop *L) {$/;"	f	class:MyHw2Pass
+depFrac	myLICM.cpp	/^   std::vector<std::pair<unsigned int, double> > depFrac;$/;"	m	struct:__anon6::MyHw2Pass	file:
+didLamp	myLICM.cpp	/^   int didLamp;$/;"	m	struct:__anon6::MyHw2Pass	file:
+doExtraRewritesBeforeFinalDeletion	myLICM.cpp	/^    virtual void doExtraRewritesBeforeFinalDeletion() const {$/;"	f	class:__anon7::LoopPromoter
+doFinalization	myLICM.cpp	/^    bool doFinalization() {$/;"	f	struct:__anon6::MyHw2Pass
+doInitialization	LAMPProfiling.cpp	/^	bool doInitialization(Loop *Lp, LPPassManager &LPM) { return false; }$/;"	f	class:__anon5::LAMPLoopProfiler
+doInitialization	LAMPProfiling.cpp	/^	bool doInitialization(Module &M) { return false; }$/;"	f	class:__anon3::LAMPProfiler
+doSSAFixUp	myLICM.cpp	/^void MyHw2Pass::doSSAFixUp(Instruction *I)$/;"	f	class:MyHw2Pass
+flag	LAMPLoadProfile.cpp	/^    static bool flag;$/;"	m	class:__anon1::LdStCallCounter	file:
+flag	LAMPLoadProfile.cpp	/^bool LdStCallCounter::flag = false;$/;"	m	class:LdStCallCounter	file:
+flag	LAMPProfiling.cpp	/^    static bool flag;$/;"	m	class:__anon2::LdStCallCounter	file:
+flag	LAMPProfiling.cpp	/^bool LdStCallCounter::flag = false;$/;"	m	class:LdStCallCounter	file:
+getAnalysisUsage	LAMPLoadProfile.cpp	/^void LAMPBuildLoopMap::getAnalysisUsage(AnalysisUsage &AU) const {$/;"	f	class:LAMPBuildLoopMap
+getAnalysisUsage	LAMPLoadProfile.cpp	/^void LAMPLoadProfile::getAnalysisUsage(AnalysisUsage &AU) const {$/;"	f	class:LAMPLoadProfile
+getAnalysisUsage	LAMPProfiling.cpp	/^	virtual void getAnalysisUsage(AnalysisUsage &AU) const {$/;"	f	class:__anon3::LAMPProfiler
+getAnalysisUsage	LAMPProfiling.cpp	/^	virtual void getAnalysisUsage(AnalysisUsage &AU) const {$/;"	f	class:__anon4::LAMPInit
+getAnalysisUsage	LAMPProfiling.cpp	/^	virtual void getAnalysisUsage(AnalysisUsage &AU) const {$/;"	f	class:__anon5::LAMPLoopProfiler	file:
+getAnalysisUsage	myLICM.cpp	/^    virtual void getAnalysisUsage(AnalysisUsage &AU) const {$/;"	f	struct:__anon6::MyHw2Pass
+getCountInsts	LAMPLoadProfile.cpp	/^	unsigned int getCountInsts() { return num_loads + num_stores + num_calls; }$/;"	f	class:__anon1::LdStCallCounter
+getCountInsts	LAMPProfiling.cpp	/^	unsigned int getCountInsts() { return num_loads + num_stores + num_calls; }$/;"	f	class:__anon2::LdStCallCounter
+getIndex	LAMPProfiling.cpp	/^int LAMPProfiler::getIndex(const Type* ty)$/;"	f	class:LAMPProfiler
+getNumLoops	LAMPProfiling.cpp	/^	unsigned int getNumLoops(){ return numLoops;}$/;"	f	class:__anon5::LAMPLoopProfiler
+hoist	myLICM.cpp	/^void MyHw2Pass::hoist(Instruction &I) {$/;"	f	class:MyHw2Pass
+hoistAllInstr	myLICM.cpp	/^void MyHw2Pass::hoistAllInstr()$/;"	f	class:MyHw2Pass
+hoisted	myLICM.cpp	/^    set <Instruction *> hoisted;  \/\/ What might be hoisted$/;"	m	struct:__anon6::MyHw2Pass	file:
+hoistedOrder	myLICM.cpp	/^    vector <Instruction *> hoistedOrder;$/;"	m	struct:__anon6::MyHw2Pass	file:
+hoistedToAlloca	myLICM.cpp	/^    map <Instruction*, AllocaInst*> hoistedToAlloca;$/;"	m	struct:__anon6::MyHw2Pass	file:
+hoistedToLoad	myLICM.cpp	/^    map <Instruction*, vector <Instruction*> > hoistedToLoad;$/;"	m	struct:__anon6::MyHw2Pass	file:
+inSubLoop	myLICM.cpp	/^    bool inSubLoop(BasicBlock *BB) {$/;"	f	struct:__anon6::MyHw2Pass	file:
+insertIntoRedo	myLICM.cpp	/^void MyHw2Pass::insertIntoRedo(Instruction *I)$/;"	f	class:MyHw2Pass
+instToClone	myLICM.cpp	/^    map <Instruction*, vector<Instruction*> > instToClone;$/;"	m	struct:__anon6::MyHw2Pass	file:
+instructionDeleted	myLICM.cpp	/^    virtual void instructionDeleted(Instruction *I) const {$/;"	f	class:__anon7::LoopPromoter
+instruction_id	LAMPProfiling.cpp	/^	static unsigned int instruction_id;$/;"	m	class:__anon3::LAMPProfiler	file:
+instruction_id	LAMPProfiling.cpp	/^unsigned int LAMPProfiler::instruction_id = -1;$/;"	m	class:LAMPProfiler	file:
+isInstInList	myLICM.cpp	/^    virtual bool isInstInList(Instruction *I,$/;"	f	class:__anon7::LoopPromoter
+isNotUsedInLoop	myLICM.cpp	/^bool MyHw2Pass::isNotUsedInLoop(Instruction &I) {$/;"	f	class:MyHw2Pass
+isSafeToExecuteUnconditionally	myLICM.cpp	/^bool MyHw2Pass::isSafeToExecuteUnconditionally(Instruction &Inst) {$/;"	f	class:MyHw2Pass
+lampFuncs	LAMPProfiling.cpp	/^	Constant* lampFuncs[9];$/;"	m	class:__anon3::LAMPProfiler	file:
+lamp_id	LAMPLoadProfile.cpp	/^unsigned int LAMPLoadProfile::lamp_id = -1;$/;"	m	class:LAMPLoadProfile	file:
+llvm	myLICM.cpp	/^namespace llvm {$/;"	n	file:
+llvm	myLICM.cpp	/^namespace llvm$/;"	n	file:
+loadToAlloca	myLICM.cpp	/^    map <Instruction*, AllocaInst*> loadToAlloca;$/;"	m	struct:__anon6::MyHw2Pass	file:
+loadToBlock	myLICM.cpp	/^    map <Instruction*, BasicBlock*> loadToBlock;$/;"	m	struct:__anon6::MyHw2Pass	file:
+loadToRedo	myLICM.cpp	/^    map <Instruction*, vector <Instruction*> > loadToRedo;$/;"	m	struct:__anon6::MyHw2Pass	file:
+loop_id	LAMPLoadProfile.cpp	/^unsigned int LAMPBuildLoopMap::loop_id = 0;$/;"	m	class:LAMPBuildLoopMap	file:
+loop_id	LAMPProfiling.cpp	/^	static unsigned int loop_id;		\/\/ ids will be progressive starting after instruction ids$/;"	m	class:__anon5::LAMPLoopProfiler	file:
+loop_id	LAMPProfiling.cpp	/^unsigned int LAMPLoopProfiler::loop_id = 0;$/;"	m	class:LAMPLoopProfiler	file:
+makeFlags	myLICM.cpp	/^void MyHw2Pass::makeFlags()$/;"	f	class:MyHw2Pass
+newRedo	myLICM.cpp	/^BasicBlock* MyHw2Pass::newRedo(Instruction *I)$/;"	f	class:MyHw2Pass
+numLoops	LAMPProfiling.cpp	/^	unsigned int numLoops;			\/\/ numLoops for LAMPProfiler initilization$/;"	m	class:__anon5::LAMPLoopProfiler	file:
+num_calls	LAMPLoadProfile.cpp	/^    static unsigned int num_calls;$/;"	m	class:__anon1::LdStCallCounter	file:
+num_calls	LAMPLoadProfile.cpp	/^unsigned int LdStCallCounter::num_calls = 0;$/;"	m	class:LdStCallCounter	file:
+num_calls	LAMPProfiling.cpp	/^    static unsigned int num_calls;$/;"	m	class:__anon2::LdStCallCounter	file:
+num_calls	LAMPProfiling.cpp	/^unsigned int LdStCallCounter::num_calls = 0;$/;"	m	class:LdStCallCounter	file:
+num_loads	LAMPLoadProfile.cpp	/^    static unsigned int num_loads;$/;"	m	class:__anon1::LdStCallCounter	file:
+num_loads	LAMPLoadProfile.cpp	/^unsigned int LdStCallCounter::num_loads = 0;	$/;"	m	class:LdStCallCounter	file:
+num_loads	LAMPProfiling.cpp	/^    static unsigned int num_loads;$/;"	m	class:__anon2::LdStCallCounter	file:
+num_loads	LAMPProfiling.cpp	/^unsigned int LdStCallCounter::num_loads = 0;	$/;"	m	class:LdStCallCounter	file:
+num_loops	LAMPProfiling.cpp	/^    static unsigned int num_loops;$/;"	m	class:__anon2::LdStCallCounter	file:
+num_loops	LAMPProfiling.cpp	/^unsigned int LdStCallCounter::num_loops = 0;	$/;"	m	class:LdStCallCounter	file:
+num_stores	LAMPLoadProfile.cpp	/^    static unsigned int num_stores;$/;"	m	class:__anon1::LdStCallCounter	file:
+num_stores	LAMPLoadProfile.cpp	/^unsigned int LdStCallCounter::num_stores = 0;$/;"	m	class:LdStCallCounter	file:
+num_stores	LAMPProfiling.cpp	/^    static unsigned int num_stores;$/;"	m	class:__anon2::LdStCallCounter	file:
+num_stores	LAMPProfiling.cpp	/^unsigned int LdStCallCounter::num_stores = 0;$/;"	m	class:LdStCallCounter	file:
+pointerInvalidatedByLoop	myLICM.cpp	/^    bool pointerInvalidatedByLoop(Value *V, uint64_t Size,$/;"	f	struct:__anon6::MyHw2Pass	file:
+replaceLoadWithValue	myLICM.cpp	/^    virtual void replaceLoadWithValue(LoadInst *LI, Value *V) const {$/;"	f	class:__anon7::LoopPromoter
+runOnFunction	LAMPProfiling.cpp	/^bool LAMPProfiler::runOnFunction(Function &F) {$/;"	f	class:LAMPProfiler
+runOnLoop	LAMPLoadProfile.cpp	/^bool LAMPBuildLoopMap::runOnLoop(Loop* L, LPPassManager &LPM)$/;"	f	class:LAMPBuildLoopMap
+runOnLoop	LAMPProfiling.cpp	/^bool LAMPLoopProfiler::runOnLoop(Loop *Lp, LPPassManager &LPM) {$/;"	f	class:LAMPLoopProfiler
+runOnLoop	myLICM.cpp	/^bool MyHw2Pass::runOnLoop(Loop *L, LPPassManager &LPM) {$/;"	f	class:MyHw2Pass
+runOnModule	LAMPLoadProfile.cpp	/^bool LAMPLoadProfile::runOnModule(Module& M)$/;"	f	class:LAMPLoadProfile
+runOnModule	LAMPLoadProfile.cpp	/^bool LdStCallCounter::runOnModule(Module &M) {$/;"	f	class:LdStCallCounter
+runOnModule	LAMPProfiling.cpp	/^bool LAMPInit::runOnModule(Module& M)$/;"	f	class:LAMPInit
+runOnModule	LAMPProfiling.cpp	/^bool LdStCallCounter::runOnModule(Module &M) {$/;"	f	class:LdStCallCounter
+sink	myLICM.cpp	/^void MyHw2Pass::sink(Instruction &I) {$/;"	f	class:MyHw2Pass
+storeList	myLICM.cpp	/^    vector <StoreInst*> storeList;$/;"	m	struct:__anon6::MyHw2Pass	file:
+str_to_int	LAMPLoadProfile.cpp	/^inline unsigned int str_to_int(std::string& s)$/;"	f

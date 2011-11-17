@@ -1,0 +1,219 @@
+
+/*
+void MyHw2Pass::insertRedo(Instruction *I, BasicBlock *BB1, BasicBlock* BB2)
+{
+   assert(I!=NULL && "I is null");
+   assert(BB1!=NULL && "BB1 is null");
+   assert(BB2!=NULL && "BB2 is null");
+   SmallVector<PHINode*, 8> NewPHIs;
+   SSAUpdater SSA(&NewPHIs);
+  
+   bool Hoist = false;
+   if(Hoisted.count(I)){
+       Hoist = true;
+       errs() << "\n\ndid hoist\n";
+       return;
+   }
+   else{
+       errs() <<"\n\ndidnt hoist\n";
+       Hoisted.insert(I);
+   }
+   errs() << "hoist is " << Hoist << " for " << *I << "\n";
+     Value::use_iterator UO, UT;
+   UO = I->use_begin();
+   UT = I->use_end();
+   for (;UO != UT; ) {
+       //errs() << "iter is " << &(*UO) << "\n";
+       if(Instruction *user = dyn_cast<Instruction>(*UO))
+           errs() << "Inst is " << *user << "\n";
+       Use &U = UO.getUse();
+       errs() << "Use is" << *U << "\n";
+       //errs() << "Parent " << *U->getParent() << "\n";
+       ++UO;
+       //errs() << "parent after" << *U->getParent() << "\n";
+   }
+
+   if (!I->use_empty()) {
+       SSA.Initialize(I->getType(), I->getName());
+       //add into preheader
+   }
+
+   unsigned int NumInserted = 0;
+   BasicBlock *toBB;
+   Instruction *New;
+   vector<Instruction*>::iterator loadIT = hoistedToLoad[I].begin(),
+       loadITe = hoistedToLoad[I].end();
+   map <Instruction*, BasicBlock*>::iterator blockIT;
+   //insert into preheader
+   toBB = Preheader;
+   errs() << "Preheader is " << *Preheader << "\n"; 
+   I->moveBefore(toBB->getTerminator());
+   if(!I->use_empty())
+       SSA.AddAvailableValue(toBB, I);
+   NumInserted++;
+  
+   //if load insert into its redo
+   if(isa<LoadInst>(I)){
+       New = I->clone();
+       if(!I->getName().empty())
+           New->setName(I->getName() + ".cp");
+       else
+           New->setName(".cp");
+       toBB = BB1;
+       errs() << "Loads redo is " << *toBB << "\n";
+       New->insertBefore(toBB->getTerminator());
+       if(!I->use_empty())
+           SSA.AddAvailableValue(toBB,New);
+   }
+   //insert into the redo blocks
+   for(; loadIT != loadITe; loadIT++){
+       errs() << "in loop?\n";
+       if(isa<LoadInst>(I)){
+           errs() << "load is in hoisted list?\n";
+           break;
+       }
+       blockIT = loadToBlock.find((*loadIT));
+       if(blockIT->second == toBB)
+           continue;
+       //dont insert into same redo twice
+       assert(blockIT != loadToBlock.end() && "no load block");
+       New = I->clone();
+       if(!I->getName().empty())
+           New->setName(I->getName() + ".cp");
+       else
+           New->setName(".cp");
+       toBB = blockIT->second;
+   
+       New->insertBefore(toBB->getTerminator());
+       errs() << "BB is " << *toBB << "\n";
+       if(!I->use_empty())
+           SSA.AddAvailableValue(toBB,New);
+   }
+   //fixup and add phi nodes
+   assert(New!=NULL && "New is null");
+   assert(BB1->getTerminator()!=NULL && "Terminator is NULL");
+   Value::use_iterator UI, UE;
+   UI = I->use_begin();
+   UE = I->use_end();
+   for (;UI != UE; ) {
+       Use &U = UI.getUse();
+        if(Instruction *user = dyn_cast<Instruction>(*UI))
+           errs() << "Inst is " << *user << "\n";
+       ++UI;
+       SSA.RewriteUseAfterInsertions(U);
+        if(Instruction *user1 = dyn_cast<Instruction>(U)){
+           errs() << "Inst is " << *user1 << "\n";
+           if(Instruction *user2 = dyn_cast<PHINode>(U)){
+           errs() << "Parent of is " << *user2->getParent() << "\n";
+           }
+        }
+   }
+}
+*/
+/*
+void MyHw2Pass::insertRedo(Instruction *I, BasicBlock *BB1, BasicBlock* BB2)
+{
+   assert(I!=NULL && "I is null");
+   assert(BB1!=NULL && "BB1 is null");
+   assert(BB2!=NULL && "BB2 is null");
+   SmallVector<PHINode*, 8> NewPHIs;
+   SSAUpdater SSA(&NewPHIs);
+   bool Hoist = false;
+   if(Hoisted.count(I)){
+       Hoist = true;
+       errs() << "\n\ndid hoist\n";
+   }
+   else{
+       errs() <<"\n\ndidnt hoist\n";
+       Hoisted.insert(I);
+   }
+   Hoist = false;
+   errs() << "hoist is " << Hoist << " for " << *I << "\n";
+   if (!I->use_empty()&&!Hoist) {
+       SSA.Initialize(I->getType(), I->getName());
+       //add into preheader
+       I->moveBefore(Preheader->getTerminator());
+        SSA.AddAvailableValue(BB2, I);
+   }
+
+   Instruction *New;
+   New = I->clone();
+   if (!I->getName().empty())
+       New->setName(I->getName() + ".cp");
+   else
+       New->setName(".cp");
+  errs() << "clone is " << *New << "\n"; 
+   //insert into preheader/
+   //need to check if already inserted...
+   //if (!Hoist){
+    //I->moveBefore(Preheader->getTerminator());
+   //}
+   assert(New!=NULL && "New is null");
+   assert(BB1->getTerminator()!=NULL && "Terminator is NULL");
+   if(!New->use_empty() &&!Hoist)
+       SSA.Initialize(New->getType(), New->getName());
+   New->insertBefore(BB1->getTerminator());
+   if(!New->use_empty() && !I->use_empty()){
+       SSA.AddAvailableValue(BB1, New);
+   }
+   Value::use_iterator UI, UE;
+   if(!Hoist){
+       UI = I->use_begin();
+       UE = I->use_end();
+   }
+   else{
+       UI = New->use_begin();
+       UE = New->use_end();
+   }
+   for (;UI != UE; ) {
+       Use &U = UI.getUse();
+       errs() << "Use is" << *U << "\n";
+       ++UI;
+       SSA.RewriteUseAfterInsertions(U);
+   }
+}
+*/
+/*
+void MyHw2Pass::insertRedo(Instruction*I, BasicBlock *BB1, BasicBlock *BB2)
+{
+    //make an alloca for each hoisted
+    //store the result into there
+    //load before each use
+    //replace that use with the load
+    bool hoisted = false;
+    Module *M = Preheader->getParent()->getParent();
+    AllocaInst *allocaPtr;
+    StoreInst *storePtr;
+    ConstantInt* setZero;
+    LoadInst *loadPtr;
+    if(Hoisted.count(I)){
+        //already hoisted
+        hoisted = true;
+    }
+    if(!hoisted){
+        allocaPtr = new AllocaInst(I->getType(),
+                0,
+                I->getName(),
+                I->getParent()->getParent()->getEntryBlock().begin());
+        hoistedToAlloca[I] = allocaPtr;
+        //update all uses?
+        for(Value::use_iterator UI = I->use_begin(), UE = I->use_end(); 
+                UI != UE;){
+            Use &U = UI.getUse();
+            Instruction *User = cast<Instruction>(U.getUser());
+            loadPtr = new LoadInst(allocaPtr, "load" + I->getName(), Uses parent);
+            U.set(loadPtr);
+        }
+    
+        I->moveBefore(allocaPtr);
+        storePtr = new StoreInst(I, allocaPtr,Preheader->getTerminator());
+    }
+    //insert into redo
+    //store result into the correct place
+    Instruction *New = I->clone();
+    New->insertBefore(BB1->getTerminator());
+    allocaPtr = hoistedToAlloca[I];
+    storePtr = new StoreInst(New, allocaPtr, BB1->getTerminator());
+}
+*/
+

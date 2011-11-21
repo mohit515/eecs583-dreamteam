@@ -1,0 +1,20 @@
+make clean -C test1/
+make clean -C test2/
+make clean -C test3/
+
+echo ""; echo "Making Test 1:"; echo "";
+make -C test1/
+echo ""; echo "Making Test 2:"; echo "";
+make -C test2/
+echo ""; echo "Making Test 3:"; echo "";
+make -C test3/
+
+echo""; echo "Test 1:"; echo "";
+diff ./test1/output_correct ./test1/output_slicm
+
+echo""; echo "Test 2:"; echo "";
+diff ./test2/output_correct ./test2/output_slicm
+
+echo""; echo "Test 3:"; echo "";
+diff ./test3/output_correct ./test3/output_slicm
+

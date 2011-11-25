@@ -65,6 +65,12 @@ void addAddress(unsigned long addr) {
   if (stride == 0) {
     strideZeroCount++;
   }
+
+  if (strideValues.size() == 0) {
+    strideValues.push_back(stride);
+    return;
+  }
+
   long last_stride = strideValues.back();
   strideValues.push_back(stride);
   if (strideValuesToCount.count(stride)) {

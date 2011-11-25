@@ -44,7 +44,7 @@ namespace {
       static char ID;
       
       StridePrefetch() : LoopPass(ID) {
-        initializeStridePrefetchPass(*PassRegister::getPassRegistry());
+        initializeStridePrefetchPass(*PassRegistry::getPassRegistry());
       }
 
       virtual bool runOnLoop(Loop *L, LPPassManager &LPM);

@@ -9,7 +9,7 @@ LOADABLE_MODULE=1
 #
 # Give the name of a library.  This will build a dynamic version.
 #
-LIBRARYNAME=hw2pass
+LIBRARYNAME=projpass
 
 #
 # Include Makefile.common so we know what to do.

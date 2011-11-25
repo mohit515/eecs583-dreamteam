@@ -8,6 +8,6 @@ LOADABLE_MODULE=1
 #
 # List all of the subdirectories that we will compile.
 #
-DIRS=hw1pass
+DIRS=projpass
 
 include $(LEVEL)/Makefile.common

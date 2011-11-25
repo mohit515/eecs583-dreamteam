@@ -1237,8 +1237,8 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 
-LLVM_SRC_ROOT="/y/students/jpvarbed/llvm-2.9"
-LLVM_OBJ_ROOT="/y/students/jpvarbed/llvm-object"
+LLVM_SRC_ROOT="/y/students/mviscomi/llvm-2.9"
+LLVM_OBJ_ROOT="/y/students/mviscomi/llvm-install"
 
 LLVM_ABS_SRC_ROOT="`cd $srcdir ; cd $LLVM_SRC_ROOT ; pwd`"
 LLVM_ABS_OBJ_ROOT="`cd $LLVM_OBJ_ROOT ; pwd`"
@@ -1307,10 +1307,10 @@ ac_configure="$SHELL $ac_aux_dir/configure" # This should be Cygnus configure.
           ac_config_commands="$ac_config_commands tools/Makefile"
 
 
-          ac_config_commands="$ac_config_commands tools/hw1pass/Makefile"
+          ac_config_commands="$ac_config_commands tools/projpass/Makefile"
 
 
-          ac_config_commands="$ac_config_commands lib/hw1pass/Makefile"
+          ac_config_commands="$ac_config_commands lib/projpass/Makefile"
 
 
 
@@ -1887,8 +1887,8 @@ do
   "Makefile" ) CONFIG_COMMANDS="$CONFIG_COMMANDS Makefile" ;;
   "lib/Makefile" ) CONFIG_COMMANDS="$CONFIG_COMMANDS lib/Makefile" ;;
   "tools/Makefile" ) CONFIG_COMMANDS="$CONFIG_COMMANDS tools/Makefile" ;;
-  "tools/hw1pass/Makefile" ) CONFIG_COMMANDS="$CONFIG_COMMANDS tools/hw1pass/Makefile" ;;
-  "lib/hw1pass/Makefile" ) CONFIG_COMMANDS="$CONFIG_COMMANDS lib/hw1pass/Makefile" ;;
+  "tools/projpass/Makefile" ) CONFIG_COMMANDS="$CONFIG_COMMANDS tools/projpass/Makefile" ;;
+  "lib/projpass/Makefile" ) CONFIG_COMMANDS="$CONFIG_COMMANDS lib/projpass/Makefile" ;;
   *) { { echo "$as_me:$LINENO: error: invalid argument: $ac_config_target" >&5
 echo "$as_me: error: invalid argument: $ac_config_target" >&2;}
    { (exit 1); exit 1; }; };;
@@ -2330,10 +2330,10 @@ echo "$as_me: executing $ac_dest commands" >&6;}
    ${SHELL} ${llvm_src}/autoconf/install-sh -m 0644 -c ${srcdir}/lib/Makefile lib/Makefile ;;
     tools/Makefile ) ${llvm_src}/autoconf/mkinstalldirs `dirname tools/Makefile`
    ${SHELL} ${llvm_src}/autoconf/install-sh -m 0644 -c ${srcdir}/tools/Makefile tools/Makefile ;;
-    tools/hw1pass/Makefile ) ${llvm_src}/autoconf/mkinstalldirs `dirname tools/hw1pass/Makefile`
-   ${SHELL} ${llvm_src}/autoconf/install-sh -m 0644 -c ${srcdir}/tools/hw1pass/Makefile tools/hw1pass/Makefile ;;
-    lib/hw1pass/Makefile ) ${llvm_src}/autoconf/mkinstalldirs `dirname lib/hw1pass/Makefile`
-   ${SHELL} ${llvm_src}/autoconf/install-sh -m 0644 -c ${srcdir}/lib/hw1pass/Makefile lib/hw1pass/Makefile ;;
+    tools/projpass/Makefile ) ${llvm_src}/autoconf/mkinstalldirs `dirname tools/projpass/Makefile`
+   ${SHELL} ${llvm_src}/autoconf/install-sh -m 0644 -c ${srcdir}/tools/projpass/Makefile tools/projpass/Makefile ;;
+    lib/projpass/Makefile ) ${llvm_src}/autoconf/mkinstalldirs `dirname lib/projpass/Makefile`
+   ${SHELL} ${llvm_src}/autoconf/install-sh -m 0644 -c ${srcdir}/lib/projpass/Makefile lib/projpass/Makefile ;;
   esac
 done
 _ACEOF

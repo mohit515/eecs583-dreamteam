@@ -33,7 +33,6 @@
 #include "llvm/ADT/Statistic.h"
 
 using namespace llvm;
-using namespace std;
 
 namespace llvm {
   void initializeStridePrefetchPass(llvm::PassRegistry&);

@@ -4,8 +4,8 @@ dnl **************************************************************************
 AC_INIT([[[hw1pass]]],[[[1.00]]],[bugs@yourdomain])
 
 dnl Identify where LLVM source tree is
-LLVM_SRC_ROOT="/y/students/jpvarbed/llvm-2.9"
-LLVM_OBJ_ROOT="/y/students/jpvarbed/llvm-object"
+LLVM_SRC_ROOT="/y/students/mviscomi/llvm-2.9"
+LLVM_OBJ_ROOT="/y/students/mviscomi/llvm-2.9"
 
 dnl Find absolute paths to LLVM source and object trees
 LLVM_ABS_SRC_ROOT="`cd $srcdir ; cd $LLVM_SRC_ROOT ; pwd`"
@@ -30,8 +30,8 @@ dnl List every Makefile that exists within your source tree
 AC_CONFIG_MAKEFILE(Makefile)
 AC_CONFIG_MAKEFILE(lib/Makefile)
 AC_CONFIG_MAKEFILE(tools/Makefile)
-AC_CONFIG_MAKEFILE(tools/hw1pass/Makefile)
-AC_CONFIG_MAKEFILE(lib/hw1pass/Makefile)
+AC_CONFIG_MAKEFILE(tools/projpass/Makefile)
+AC_CONFIG_MAKEFILE(lib/projpass/Makefile)
 dnl **************************************************************************
 dnl * Determine which system we are building on
 dnl **************************************************************************

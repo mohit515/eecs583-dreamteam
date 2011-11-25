@@ -272,7 +272,7 @@ _CSEOF
 echo "on `(hostname || uname -n) 2>/dev/null | sed 1q`" >&5
 echo >&5
 config_files=" Makefile.common"
-config_commands=" setup Makefile lib/Makefile tools/Makefile tools/hw1pass/Makefile lib/hw1pass/Makefile"
+config_commands=" setup Makefile lib/Makefile tools/Makefile tools/projpass/Makefile lib/projpass/Makefile"
 
 ac_cs_usage="\
 \`$as_me' instantiates files from templates according to the
@@ -384,7 +384,7 @@ fi
 # INIT-COMMANDS section.
 #
 
-llvm_src="/y/students/jpvarbed/llvm-2.9"
+llvm_src="/y/students/mviscomi/llvm-2.9"
 
 for ac_config_target in $ac_config_targets
 do
@@ -395,8 +395,8 @@ do
   "Makefile" ) CONFIG_COMMANDS="$CONFIG_COMMANDS Makefile" ;;
   "lib/Makefile" ) CONFIG_COMMANDS="$CONFIG_COMMANDS lib/Makefile" ;;
   "tools/Makefile" ) CONFIG_COMMANDS="$CONFIG_COMMANDS tools/Makefile" ;;
-  "tools/hw1pass/Makefile" ) CONFIG_COMMANDS="$CONFIG_COMMANDS tools/hw1pass/Makefile" ;;
-  "lib/hw1pass/Makefile" ) CONFIG_COMMANDS="$CONFIG_COMMANDS lib/hw1pass/Makefile" ;;
+  "tools/projpass/Makefile" ) CONFIG_COMMANDS="$CONFIG_COMMANDS tools/projpass/Makefile" ;;
+  "lib/projpass/Makefile" ) CONFIG_COMMANDS="$CONFIG_COMMANDS lib/projpass/Makefile" ;;
   *) { { echo "$as_me:$LINENO: error: invalid argument: $ac_config_target" >&5
 echo "$as_me: error: invalid argument: $ac_config_target" >&2;}
    { (exit 1); exit 1; }; };;
@@ -478,8 +478,8 @@ s,@ECHO_C@,,;t t
 s,@ECHO_N@,-n,;t t
 s,@ECHO_T@,,;t t
 s,@LIBS@,,;t t
-s,@LLVM_SRC@,/y/students/jpvarbed/llvm-2.9,;t t
-s,@LLVM_OBJ@,/y/students/jpvarbed/llvm-object,;t t
+s,@LLVM_SRC@,/y/students/mviscomi/llvm-2.9,;t t
+s,@LLVM_OBJ@,/y/students/mviscomi/llvm-install,;t t
 s,@LIBOBJS@,,;t t
 s,@LTLIBOBJS@,,;t t
 CEOF
@@ -831,10 +831,10 @@ echo "$as_me: executing $ac_dest commands" >&6;}
    ${SHELL} ${llvm_src}/autoconf/install-sh -m 0644 -c ${srcdir}/lib/Makefile lib/Makefile ;;
     tools/Makefile ) ${llvm_src}/autoconf/mkinstalldirs `dirname tools/Makefile`
    ${SHELL} ${llvm_src}/autoconf/install-sh -m 0644 -c ${srcdir}/tools/Makefile tools/Makefile ;;
-    tools/hw1pass/Makefile ) ${llvm_src}/autoconf/mkinstalldirs `dirname tools/hw1pass/Makefile`
-   ${SHELL} ${llvm_src}/autoconf/install-sh -m 0644 -c ${srcdir}/tools/hw1pass/Makefile tools/hw1pass/Makefile ;;
-    lib/hw1pass/Makefile ) ${llvm_src}/autoconf/mkinstalldirs `dirname lib/hw1pass/Makefile`
-   ${SHELL} ${llvm_src}/autoconf/install-sh -m 0644 -c ${srcdir}/lib/hw1pass/Makefile lib/hw1pass/Makefile ;;
+    tools/projpass/Makefile ) ${llvm_src}/autoconf/mkinstalldirs `dirname tools/projpass/Makefile`
+   ${SHELL} ${llvm_src}/autoconf/install-sh -m 0644 -c ${srcdir}/tools/projpass/Makefile tools/projpass/Makefile ;;
+    lib/projpass/Makefile ) ${llvm_src}/autoconf/mkinstalldirs `dirname lib/projpass/Makefile`
+   ${SHELL} ${llvm_src}/autoconf/install-sh -m 0644 -c ${srcdir}/lib/projpass/Makefile lib/projpass/Makefile ;;
   esac
 done
 

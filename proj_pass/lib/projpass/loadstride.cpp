@@ -15,7 +15,7 @@ class LoadStride {
     LoadStride();
     ~LoadStride();
 
-    addAddress(unsigned long);
+    void addAddress(unsigned long);
     
     unsigned long getStrideZeroCount() {
       return strideZeroCount;
@@ -25,16 +25,19 @@ class LoadStride {
       return strideZeroDifferenceCount;
     }
 
-    map<long,long> *getTopStrideValues() {
-      return topStrideValues;
+    vector< pair<long, long> > *getTopStrideValues() {
+      return &topStrideValues;
     }
 
-    map<long,long> *getTopStrideDifferenceValues() {
-      return topStrideDifferenceValues;
+    vector< pair<long, long> > *getTopStrideDifferenceValues() {
+      return &topStrideDifferenceValues;
     }
-    
+ 
+    void updateTopStrideValues(long);
+    void updateTopStrideDifferenceValues(long);
+
   private:
-    static const int TOPCOUNT;
+    static int TOPCOUNT;
 
     vector<unsigned long> addresses;
     vector<long> strideValues;
@@ -46,9 +49,9 @@ class LoadStride {
 
     vector< pair<long, long> > topStrideValues;
     vector< pair<long, long> > topStrideDifferenceValues;
-}
+};
 
-const int LoadStride::TOPCOUNT = 5; // number of top stride values to return
+int LoadStride::TOPCOUNT = 5; // number of top stride values to return
 
 LoadStride::LoadStride() {
   strideZeroCount = 0;
@@ -98,7 +101,7 @@ void LoadStride::updateTopStrideDifferenceValues(long value) {
   }
 }
 
-void addAddress(unsigned long addr) {
+void LoadStride::addAddress(unsigned long addr) {
   if (addresses.size() == 0) {
     addresses.push_back(addr);
     return;

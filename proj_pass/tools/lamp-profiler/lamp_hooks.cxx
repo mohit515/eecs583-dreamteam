@@ -287,7 +287,7 @@ void LAMP_StrideProfile(const uint32_t instr, const uint64_t addr) {
     return;
   }
 
-  
+  // TODO insert profiling code here for this instr with the load of addr
   debug() << instr << " : "<< (void *)addr << endl;
 }
 

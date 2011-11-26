@@ -282,6 +282,14 @@ static void memory_profile(const uint32_t destId, const uint64_t addr) {
     //debug()<<endl;
 }
 
+void LAMP_StrideProfile(const uint32_t instr, const uint64_t addr) {
+  if (!LAMP_initialized) {
+    return;
+  }
+
+  debug() << instr << " : "<<addr << endl;
+}
+
 template <class T>
 static void LAMP_aligned_load(const uint32_t instr, const uint64_t addr) {
     if (!LAMP_initialized) return;

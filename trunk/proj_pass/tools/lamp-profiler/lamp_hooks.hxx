@@ -35,6 +35,8 @@ void LAMP_loop_exit_st(void);
 
 void LAMP_init(uint32_t num_instrs, uint32_t num_loops, uint64_t granularity, uint64_t flags);
 
+void LAMP_StrideProfile(const uint32_t instr, const uint64_t addr);
+
 void LAMP_load1(const uint32_t instr, const uint64_t addr);
 void LAMP_load2(const uint32_t instr, const uint64_t addr);
 void LAMP_load4(const uint32_t instr, const uint64_t addr);

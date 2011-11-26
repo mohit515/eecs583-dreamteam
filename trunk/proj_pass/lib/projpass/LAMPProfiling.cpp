@@ -99,6 +99,7 @@ namespace {
 	Constant* CallFn;
 	Constant* AllocFn;
 	Constant* DeallocFn;
+  Constant* StrideProfileFn;
 	void createLampDeclarations(Module* M);
 	int getIndex(const Type* ty);
 	TargetData* TD;
@@ -134,6 +135,7 @@ void LAMPProfiler::createLampDeclarations(Module* M)
 	std::string FnName = "LAMP_register";
 	std::string AllocName = "LAMP_allocate";
 	std::string DeallocName = "LAMP_deallocate";
+  std::string StrideProfileName = "LAMP_StrideProfile";
 	
 	for (int i=0; i < 4; i++)
 	{
@@ -148,6 +150,14 @@ void LAMPProfiler::createLampDeclarations(Module* M)
 			// should be 32, 8?, 32 -- currently defined as 32 64 64
 	AllocFn = M->getOrInsertFunction(AllocName, llvm::Type::getVoidTy(M->getContext()), llvm::Type::getInt32Ty(M->getContext()), llvm::Type::getInt8Ty(M->getContext()), llvm::Type::getInt32Ty(M->getContext()), (Type*)0);
 	DeallocFn = M->getOrInsertFunction(DeallocName, llvm::Type::getVoidTy(M->getContext()), llvm::Type::getInt32Ty(M->getContext()), llvm::Type::getInt8Ty(M->getContext()), llvm::Type::getInt32Ty(M->getContext()), (Type*)0);
+
+  StrideProfileFn = M->getOrInsertFunction(
+    StrideProfileName,
+    llvm::Type::getVoidTy(M->getContext()),
+    llvm::Type::getInt32Ty(M->getContext()),
+    llvm::Type::getInt64Ty(M->getContext()),
+    (Type *) 0
+  );
 }
 
 int LAMPProfiler::getIndex(const Type* ty)
@@ -206,6 +216,8 @@ bool LAMPProfiler::runOnFunction(Function &F) {
 				// cerr << index << " " << *I  ; // DEBUG
 	
 				CallInst::Create(lampFuncs[index], Args.begin(), Args.end(), "", I);
+
+        CallInst::Create(StrideProfileFn, Args.begin(), Args.end(), "", I);
 			}
 				// Instrument Stores
 	    		else if (isa<StoreInst>(I))

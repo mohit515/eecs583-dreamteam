@@ -204,7 +204,7 @@ bool LAMPProfiler::runOnFunction(Function &F) {
 				std::vector<Value*> Args(2);
 		
 				Args[0] = ConstantInt::get(llvm::Type::getInt32Ty(F.getContext()), ++instruction_id);
-
+errs() << Args[0] <<" ("<< instruction_id <<") is: "<<*I<<"\n";
 				Value* ptr= (dyn_cast<LoadInst>(I))->getPointerOperand();
 				Args[1] = new PtrToIntInst(ptr, llvm::Type::getInt64Ty(F.getContext()), "addr_var", I);
 				

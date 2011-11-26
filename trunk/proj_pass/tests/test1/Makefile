@@ -34,7 +34,7 @@ clean:
 	rm -f correct_correct output_correct
 	rm -f result.lamp*
 	rm -f correct.bc correct.opt*
-	rm -f output output_slicm
+	rm -f output output_slicm correct.lamp* correct.ls* correct.profile* output_*
 	rm -f correct.slicm*
 	rm -f cfg.*
 

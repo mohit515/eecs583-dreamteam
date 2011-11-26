@@ -243,7 +243,7 @@ template <class T>
 static void memory_profile(const uint32_t destId, const uint64_t addr) {
     Pages &pages = pageCache.at(destId);
     const timestamp_t *last_store = NULL;
-
+    
     //debug()<<"ML "<<destId<<" "<<(void *) addr<<" "<<sizeof(T)<<" :: ";
     // cerr<<"ML "<<destId<<" "<<(void *) addr<<" "<<sizeof(T)<<" :: ";
 
@@ -287,7 +287,8 @@ void LAMP_StrideProfile(const uint32_t instr, const uint64_t addr) {
     return;
   }
 
-  debug() << instr << " : "<<addr << endl;
+  
+  debug() << instr << " : "<< (void *)addr << endl;
 }
 
 template <class T>

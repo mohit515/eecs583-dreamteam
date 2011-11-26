@@ -25,7 +25,7 @@ int main(void)
 			a[i] = 1 ;          
 		}
 		
-		gettimeofday(&t_start,NULL);
+    gettimeofday(&t_start,NULL);
 		// uttermost loop test
 		for (i=0;i<INDEX;i++){
 			// create infrequent alias
@@ -44,6 +44,7 @@ int main(void)
 				b[i] = a[i] + 1;                        // no hoist here
 			}
 			d[i] = (a[MEM_4] /100) + a[MEM_3]+ 20;    // not hoist MEM_4
+      printf("%p\n%p\n%p\n%p", a, b, c, d);
       //printf("%d", d[i]);
 			// nested loop test
 			for (j=0;j<INDEX;j++){

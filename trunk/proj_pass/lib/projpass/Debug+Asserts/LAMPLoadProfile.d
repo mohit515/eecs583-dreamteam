@@ -1,7 +1,7 @@
  \
- /y/students/jpvarbed/hw2/hw2_pass/lib/hw1pass/Debug+Asserts/LAMPLoadProfile.o \
-  /y/students/jpvarbed/hw2/hw2_pass/lib/hw1pass/Debug+Asserts/LAMPLoadProfile.d \
-  /y/students/jpvarbed/hw2/hw2_pass/lib/hw1pass/Debug+Asserts/LAMPLoadProfile.o:  \
+ /y/students/jpvarbed/project/eecs583-dreamteam/proj_pass/lib/projpass/Debug+Asserts/LAMPLoadProfile.o \
+  /y/students/jpvarbed/project/eecs583-dreamteam/proj_pass/lib/projpass/Debug+Asserts/LAMPLoadProfile.d \
+  /y/students/jpvarbed/project/eecs583-dreamteam/proj_pass/lib/projpass/Debug+Asserts/LAMPLoadProfile.o:  \
  LAMPLoadProfile.cpp /y/students/jpvarbed/llvm-2.9/include/llvm/Module.h \
   /y/students/jpvarbed/llvm-2.9/include/llvm/Function.h \
   /y/students/jpvarbed/llvm-2.9/include/llvm/GlobalValue.h \
@@ -98,7 +98,7 @@
   /y/students/jpvarbed/llvm-2.9/include/llvm/ADT/SmallVector.h \
   /y/students/jpvarbed/llvm-object/include/llvm/Support/DataTypes.h \
   /y/students/jpvarbed/llvm-2.9/include/llvm/ADT/IndexedMap.h \
-  /y/students/jpvarbed/hw2/hw2_pass/include/LAMPLoadProfile.h \
+  /y/students/jpvarbed/project/eecs583-dreamteam/proj_pass/include/LAMPLoadProfile.h \
   /y/students/jpvarbed/llvm-2.9/include/llvm/Module.h \
   /y/students/jpvarbed/llvm-2.9/include/llvm/Pass.h \
   /y/students/jpvarbed/llvm-2.9/include/llvm/Analysis/Passes.h \
@@ -304,7 +304,7 @@
 
 /y/students/jpvarbed/llvm-2.9/include/llvm/ADT/IndexedMap.h:
 
-/y/students/jpvarbed/hw2/hw2_pass/include/LAMPLoadProfile.h:
+/y/students/jpvarbed/project/eecs583-dreamteam/proj_pass/include/LAMPLoadProfile.h:
 
 /y/students/jpvarbed/llvm-2.9/include/llvm/Module.h:
 

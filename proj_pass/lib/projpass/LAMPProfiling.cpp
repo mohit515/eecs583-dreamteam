@@ -16,6 +16,7 @@
 #include "llvm/Support/Debug.h"
 #include <iostream>
 #include <set>
+#include "loadstride.h"
 
 using namespace llvm;
 using namespace std;

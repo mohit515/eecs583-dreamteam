@@ -1,7 +1,7 @@
  \
- /y/students/jpvarbed/hw2/hw2_pass/lib/hw1pass/Debug+Asserts/LAMPProfiling.o \
-  /y/students/jpvarbed/hw2/hw2_pass/lib/hw1pass/Debug+Asserts/LAMPProfiling.d \
-  /y/students/jpvarbed/hw2/hw2_pass/lib/hw1pass/Debug+Asserts/LAMPProfiling.o:  \
+ /y/students/jpvarbed/project/eecs583-dreamteam/proj_pass/lib/projpass/Debug+Asserts/LAMPProfiling.o \
+  /y/students/jpvarbed/project/eecs583-dreamteam/proj_pass/lib/projpass/Debug+Asserts/LAMPProfiling.d \
+  /y/students/jpvarbed/project/eecs583-dreamteam/proj_pass/lib/projpass/Debug+Asserts/LAMPProfiling.o:  \
  LAMPProfiling.cpp /y/students/jpvarbed/llvm-2.9/include/llvm/Constants.h \
   /y/students/jpvarbed/llvm-2.9/include/llvm/Constant.h \
   /y/students/jpvarbed/llvm-2.9/include/llvm/User.h \
@@ -90,7 +90,7 @@
   /y/students/jpvarbed/llvm-2.9/include/llvm/Pass.h \
   /y/students/jpvarbed/llvm-2.9/include/llvm/ADT/SmallVector.h \
   /y/students/jpvarbed/llvm-2.9/include/llvm/Support/Compiler.h \
-  /y/students/jpvarbed/hw2/hw2_pass/include/LAMPProfiling.h \
+  /y/students/jpvarbed/project/eecs583-dreamteam/proj_pass/include/LAMPProfiling.h \
   /y/students/jpvarbed/llvm-2.9/include/llvm/Analysis/LoopPass.h \
   /y/students/jpvarbed/llvm-2.9/include/llvm/Analysis/LoopInfo.h \
   /y/students/jpvarbed/llvm-2.9/include/llvm/Pass.h \
@@ -298,7 +298,7 @@
 
 /y/students/jpvarbed/llvm-2.9/include/llvm/Support/Compiler.h:
 
-/y/students/jpvarbed/hw2/hw2_pass/include/LAMPProfiling.h:
+/y/students/jpvarbed/project/eecs583-dreamteam/proj_pass/include/LAMPProfiling.h:
 
 /y/students/jpvarbed/llvm-2.9/include/llvm/Analysis/LoopPass.h:
 

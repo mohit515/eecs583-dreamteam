@@ -288,6 +288,7 @@ void LAMP_StrideProfile(const uint32_t instr, const uint64_t addr) {
   }
 
   // TODO insert profiling code here for this instr with the load of addr
+  debug() << "in strideprofile" << endl;
   debug() << instr << " : "<< (void *)addr << endl;
 }
 

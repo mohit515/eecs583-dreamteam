@@ -15,85 +15,85 @@ using namespace std;
 
 namespace Profiling {
 
-    class ValueCount {
+  class ValueCount {
     public:
-	uint64_t value;
-	uint64_t count;
+      uint64_t value;
+      uint64_t count;
 
-	ValueCount() : count(0) {}
-    };
+      ValueCount() : count(0) {}
+  };
 
 
-    class ValueProfile {
+  class ValueProfile {
     private:
-	static const uint64_t MAX_VALUES = 5;
+      static const uint64_t MAX_VALUES = 5;
 
-	ValueCount values[MAX_VALUES];
+      ValueCount values[MAX_VALUES];
 
-	uint64_t count;
+      uint64_t count;
 
     public:
-	ValueProfile() : count(0) {
-            memset(this->values, 0, sizeof(this->values));
+      ValueProfile() : count(0) {
+        memset(this->values, 0, sizeof(this->values));
+      }
+
+      void increment(const uint64_t value) {
+        this->count++;
+
+        for (uint32_t i = 0; i < MAX_VALUES; i++) {
+          if (this->values[i].value == value) {
+            this->values[i].count++;
+            return;
+          }
         }
 
-	void increment(const uint64_t value) {
-	    this->count++;
-	    
-	    for (uint32_t i = 0; i < MAX_VALUES; i++) {
-		if (this->values[i].value == value) {
-		    this->values[i].count++;
-		    return;
-		}
-	    }
-	    
-	    for (uint32_t i = 0; i < MAX_VALUES; i++) {
-		if (this->values[i].count == 0) {
-		    this->values[i].value = value;
-		    this->values[i].count = 1;
-		    return;
-		}
-	    }
-	}
+        for (uint32_t i = 0; i < MAX_VALUES; i++) {
+          if (this->values[i].count == 0) {
+            this->values[i].value = value;
+            this->values[i].count = 1;
+            return;
+          }
+        }
+      }
 
-	friend ostream &operator<<(ostream &stream, const ValueProfile &vp);
-    };
+      friend ostream &operator<<(ostream &stream, const ValueProfile &vp);
+  };
 
-    ostream &operator<<(ostream &stream, const ValueProfile &vp) {
-	stream<<vp.count<<" : ";
-	if (vp.count == 0)
-	    return stream;
-	    
-	for (uint32_t j = 0; j < ValueProfile::MAX_VALUES; j++) {
-	    if (vp.values[j].count != 0) {
-		stream<<vp.values[j].value<<" "<<vp.values[j].count<<" : ";
-	    }
-	}
+  ostream &operator<<(ostream &stream, const ValueProfile &vp) {
+    stream<<vp.count<<" : ";
+    if (vp.count == 0)
+      return stream;
 
-	return stream;
+    for (uint32_t j = 0; j < ValueProfile::MAX_VALUES; j++) {
+      if (vp.values[j].count != 0) {
+        stream<<vp.values[j].value<<" "<<vp.values[j].count<<" : ";
+      }
     }
 
-    template <int maxTrackedDistance = DEFAULT_TRACKED_DISTANCE>
+    return stream;
+  }
+
+  template <int maxTrackedDistance = DEFAULT_TRACKED_DISTANCE>
     class ValueProfiler : public KeyDistanceProfiler<ValueProfile, maxTrackedDistance> {
-    public:
-	ValueProfiler(const uint32_t num_instrs) 
-	    : KeyDistanceProfiler<ValueProfile, maxTrackedDistance>(num_instrs) {}
+      public:
+        ValueProfiler(const uint32_t num_instrs) 
+          : KeyDistanceProfiler<ValueProfile, maxTrackedDistance>(num_instrs) {}
 
-	void increment(const Dependence &dep, const uint64_t value) {
-	    ValueProfile & valueProfile = this->getProfile(dep);
-	    valueProfile.increment(value);
-	}
+        void increment(const Dependence &dep, const uint64_t value) {
+          ValueProfile & valueProfile = this->getProfile(dep);
+          valueProfile.increment(value);
+        }
 
-	template<int S>
-	friend ostream &operator<<(ostream &stream, const ValueProfiler<S> &vp);
+        template<int S>
+          friend ostream &operator<<(ostream &stream, const ValueProfiler<S> &vp);
     };
 
-    template<int S>
+  template<int S>
     ostream &operator<<(ostream &stream, const ValueProfiler<S> &vp) {
-	stream<<"BEGIN Value Profile"<<endl;
-	stream<<((KeyDistanceProfiler<ValueProfile, S> &) vp);
-	stream<<"END Value Profile"<<endl;
-	return stream;
+      stream<<"BEGIN Value Profile"<<endl;
+      stream<<((KeyDistanceProfiler<ValueProfile, S> &) vp);
+      stream<<"END Value Profile"<<endl;
+      return stream;
     }
 }
 

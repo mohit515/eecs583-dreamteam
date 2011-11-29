@@ -228,6 +228,13 @@ void LAMP_init_st() {
 }
 
 void LAMP_finish() {
+    // TODO: print output here for strides
+    map<uint32_t, LoadStride *>::iterator itStart, itEnd;
+    for (itStart = StrideProfiles.begin(), itEnd = StrideProfiles.end(); itStart != itEnd;
+         itStart++) {
+      debug() << "Test: "<< itStart->first <<" "<< itStart->second->getStrideZeroCount() << endl;
+    }
+
     *(lamp_params.lamp_out)<<*memoryProfiler;
     LAMP_print_stats(*(lamp_params.lamp_out));
 }

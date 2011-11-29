@@ -7,10 +7,10 @@ using namespace std;
 class LoadStride {
 
   public:
-    LoadStride();
+    LoadStride(uint32_t);
     ~LoadStride();
 
-    void addAddress(unsigned long);
+    void addAddress(uint64_t);
     
     unsigned long getStrideZeroCount() {
       return strideZeroCount;
@@ -33,6 +33,8 @@ class LoadStride {
 
   private:
     static unsigned int TOPCOUNT;
+
+    uint32_t instructionNumber;
 
     vector<unsigned long> addresses;
     vector<long> strideValues;

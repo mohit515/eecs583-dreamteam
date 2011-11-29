@@ -68,6 +68,8 @@ static MemoryStamp memory_stamp; // centralized map keeping track of addr -> Mem
 
 typedef vector<DependenceSet> DependenceSets;
 
+map<uint32_t, LoadStride *> StrideProfiles;
+
 typedef LoopHierarchy<DependenceSets, Loop::DEFAULT_LOOP_DEPTH, MAX_DEP_DIST> Loops;
 
 static Loops loop_hierarchy;
@@ -289,7 +291,13 @@ void LAMP_StrideProfile(const uint32_t instr, const uint64_t addr) {
   }
 
   // TODO insert profiling code here for this instr with the load of addr
-  debug() << instr << " : "<< (void *)addr << endl;
+  
+  if (StrideProfiles.count(instr) == 0) {
+    StrideProfiles[instr] = new LoadStride(instr);
+  }
+
+  LoadStride *profiler = StrideProfiles[instr];
+  profiler->addAddress(addr);
 }
 
 template <class T>

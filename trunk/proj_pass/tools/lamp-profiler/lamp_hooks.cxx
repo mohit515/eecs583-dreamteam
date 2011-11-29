@@ -4,6 +4,7 @@
 #include "../utils/MemoryMap.hxx"
 #include "../utils/LoopHierarchy.hxx"
 #include "../utils/MemoryProfile.hxx"
+#include "../utils/
 
 #define LOAD LAMP_external_load
 #define STORE LAMP_external_store
@@ -288,7 +289,6 @@ void LAMP_StrideProfile(const uint32_t instr, const uint64_t addr) {
   }
 
   // TODO insert profiling code here for this instr with the load of addr
-  debug() << "in strideprofile" << endl;
   debug() << instr << " : "<< (void *)addr << endl;
 }
 

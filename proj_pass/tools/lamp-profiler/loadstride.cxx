@@ -9,8 +9,7 @@
 #include "loadstride.h"
 using namespace std;
 
-
-int LoadStride::TOPCOUNT = 5; // number of top stride values to return
+unsigned int LoadStride::TOPCOUNT = 5; // number of top stride values to return
 
 LoadStride::LoadStride() {
   strideZeroCount = 0;

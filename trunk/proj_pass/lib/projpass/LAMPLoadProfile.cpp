@@ -177,6 +177,9 @@ bool LAMPLoadProfile::runOnModule(Module& M)
 		return false;
 	}
 	std::string s;
+
+  // TODO read all the stride profiling information
+
 	// discard the first three strings ("BEGIN" "Memory" "Profile")
 	ifs >> s; ifs >> s; ifs >> s;
 

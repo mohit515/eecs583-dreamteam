@@ -6,7 +6,7 @@
 #include <vector>
 #include <utility>
 #include <map>
-#include "loadstride.h"
+#include "loadstride.hxx"
 using namespace std;
 
 unsigned int LoadStride::TOPCOUNT = 5; // number of top stride values to return

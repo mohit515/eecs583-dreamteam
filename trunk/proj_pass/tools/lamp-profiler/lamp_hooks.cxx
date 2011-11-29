@@ -4,7 +4,7 @@
 #include "../utils/MemoryMap.hxx"
 #include "../utils/LoopHierarchy.hxx"
 #include "../utils/MemoryProfile.hxx"
-#include "../utils/
+#include "loadstride.hxx"
 
 #define LOAD LAMP_external_load
 #define STORE LAMP_external_store

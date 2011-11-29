@@ -11,7 +11,8 @@ using namespace std;
 
 unsigned int LoadStride::TOPCOUNT = 5; // number of top stride values to return
 
-LoadStride::LoadStride() {
+LoadStride::LoadStride(uint32_t instrNum) {
+  instructionNumber = instrNum;
   strideZeroCount = 0;
   strideZeroDifferenceCount = 0;
 }
@@ -59,7 +60,7 @@ void LoadStride::updateTopStrideDifferenceValues(long value) {
   }
 }
 
-void LoadStride::addAddress(unsigned long addr) {
+void LoadStride::addAddress(uint64_t addr) {
   if (addresses.size() == 0) {
     addresses.push_back(addr);
     return;

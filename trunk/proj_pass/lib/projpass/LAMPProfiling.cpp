@@ -218,6 +218,7 @@ errs() << Args[0] <<" ("<< instruction_id <<") is: "<<*I<<"\n";
 	
 				CallInst::Create(lampFuncs[index], Args.begin(), Args.end(), "", I);
 
+        // TODO only call this function if this load has some freq count above some threshold (use edge profiling to figure this out)
         CallInst::Create(StrideProfileFn, Args.begin(), Args.end(), "", I);
 			}
 				// Instrument Stores

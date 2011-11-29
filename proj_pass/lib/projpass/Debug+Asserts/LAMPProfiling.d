@@ -120,7 +120,8 @@
   /y/students/jpvarbed/llvm-2.9/include/llvm/Support/PrettyStackTrace.h \
   /y/students/jpvarbed/llvm-2.9/include/llvm/ADT/SmallVector.h \
   /y/students/jpvarbed/llvm-2.9/include/llvm/Analysis/Passes.h \
-  /y/students/jpvarbed/llvm-2.9/include/llvm/Support/Debug.h
+  /y/students/jpvarbed/llvm-2.9/include/llvm/Support/Debug.h \
+  /y/students/jpvarbed/project/eecs583-dreamteam/proj_pass/include/loadstride.h
 
 /y/students/jpvarbed/llvm-2.9/include/llvm/Constants.h:
 
@@ -359,3 +360,5 @@
 /y/students/jpvarbed/llvm-2.9/include/llvm/Analysis/Passes.h:
 
 /y/students/jpvarbed/llvm-2.9/include/llvm/Support/Debug.h:
+
+/y/students/jpvarbed/project/eecs583-dreamteam/proj_pass/include/loadstride.h:

@@ -6,11 +6,11 @@ default:
 	llc correct.profile.bc -o correct.profile.s
 	g++ -o correct.profile correct.profile.s /y/students/mviscomi/llvm-install/Release/lib/profile_rt.so
 	./correct.profile ../input1/cccp.c > output_profile
-	 opt -load /y/students/mviscomi/hw2/Debug+Asserts/lib/speclicm.so -lamp-insts -insert-lamp-profiling -insert-lamp-loop-profiling -insert-lamp-init < correct.ls.bc > correct.lamp.bc
+	 opt -load ../../../Debug+Asserts/lib/projpass.so -lamp-insts -insert-lamp-profiling -insert-lamp-loop-profiling -insert-lamp-init < correct.ls.bc > correct.lamp.bc
 	llc correct.lamp.bc -o correct.lamp.s
-	g++ -o correct.lamp correct.lamp.s /y/students/mviscomi/llvm-install/Release/lib/profile_rt.so /y/students/mviscomi/hw2/tools/lamp-profiler/lamp_hooks.o
+	g++ -o correct.lamp correct.lamp.s /y/students/mviscomi/llvm-install/Release/lib/profile_rt.so ../../../tools/lamp-profiler/lamp_hooks.o ../../../tools/lamp-profiler/loadstride.cxx
 	./correct.lamp ../input1/cccp.c > output
-	opt -load /y/students/mviscomi/hw2/Debug+Asserts/lib/speclicm.so -profile-loader -profile-info-file=llvmprof.out -lamp-inst-cnt -lamp-map-loop -lamp-load-profile -hw2pass correct.ls.bc > correct.slicm.bc
+	opt -load ../../../Debug+Asserts/lib/projpass.so -profile-loader -profile-info-file=llvmprof.out -lamp-inst-cnt -lamp-map-loop -lamp-load-profile -projpass correct.ls.bc > correct.slicm.bc
 	llc correct.slicm.bc -o correct.slicm.s
 	g++ -o correct.slicm correct.slicm.s
 	opt -mem2reg correct.slicm.bc -o correct.slicm.mem2reg.bc

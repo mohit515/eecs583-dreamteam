@@ -232,7 +232,14 @@ void LAMP_finish() {
     map<uint32_t, LoadStride *>::iterator itStart, itEnd;
     for (itStart = StrideProfiles.begin(), itEnd = StrideProfiles.end(); itStart != itEnd;
          itStart++) {
-      debug() << "Test: "<< itStart->first <<" "<< itStart->second->getStrideZeroCount() << endl;
+      vector< pair<long, long> > *topStrides = itStart->second->getTopStrideValues();
+      debug() << "Instr #: "<< itStart->first <<" , Zero Count: "<< itStart->second->getStrideZeroCount()<<endl;
+
+      for (int a=0; a<topStrides->size(); a++) {
+        debug() << "\t"<<topStrides->at(a).first<<" stride has count "<<topStrides->at(a).second <<endl;
+      }
+
+      debug() << endl;
     }
 
     *(lamp_params.lamp_out)<<*memoryProfiler;
@@ -298,7 +305,7 @@ void LAMP_StrideProfile(const uint32_t instr, const uint64_t addr) {
   }
 
   // TODO insert profiling code here for this instr with the load of addr
-  
+
   if (StrideProfiles.count(instr) == 0) {
     StrideProfiles[instr] = new LoadStride(instr);
   }

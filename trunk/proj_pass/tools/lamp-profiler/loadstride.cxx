@@ -22,6 +22,12 @@ LoadStride::~LoadStride() {
 
 void LoadStride::updateTopStrideValues(long value) {
   long count = strideValuesToCount[value];
+  for (int i = 0; i < topStrideValues.size(); i++) {
+    if (topStrideValues[i].first == value) {
+      topStrideValues[i].second = count;
+      return;
+    }
+  }
   if (topStrideValues.size() < LoadStride::TOPCOUNT) {
     topStrideValues.push_back(make_pair(value, count));
     return;
@@ -42,6 +48,12 @@ void LoadStride::updateTopStrideValues(long value) {
 
 void LoadStride::updateTopStrideDifferenceValues(long value) {
   long count = strideDifferencesToCount[value];
+  for (int i = 0; i < topStrideDifferenceValues.size(); i++) {
+    if (topStrideDifferenceValues[i].first == value) {
+      topStrideDifferenceValues[i].second = count;
+      return;
+    }
+  }
   if (topStrideDifferenceValues.size() < LoadStride::TOPCOUNT) {
     topStrideDifferenceValues.push_back(make_pair(value, count));
     return;
@@ -76,6 +88,12 @@ void LoadStride::addAddress(uint64_t addr) {
 
   if (strideValues.size() == 0) {
     strideValues.push_back(stride);
+    if (strideValuesToCount.count(stride)) {
+      strideValuesToCount[stride]++;
+    } else {
+      strideValuesToCount[stride] = 1;
+    }
+    updateTopStrideValues(stride);
     return;
   }
 

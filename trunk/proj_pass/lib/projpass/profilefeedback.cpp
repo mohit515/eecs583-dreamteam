@@ -1,3 +1,4 @@
+#if FALSE
 #include <iostream>
 using namespace std;
 using namespace llvm;
@@ -8,6 +9,7 @@ using namespace llvm;
 #define PMST_T 10
 #define WSST_T 10
 #define MAXPREFETCHDISTANCE 8
+#define NUMFREQ 4
 
 set <Instruction*> SSST_loads;
 set <Instruction*> PMST_loads;
@@ -26,12 +28,10 @@ instToInfo getInfo(Instruction* inst)
 
 struct loadInfo {
     int loadID;
-    int freq1;
-    int freq2;
-    int freq3;
-    int freq4;
+    vector<int> freq(NUMFREQ, 0);
     int num_zero_diff;
     int profiledStride;
+    int totalStrides;
     int dominantStride;
     int tripCount;
 };
@@ -39,35 +39,44 @@ struct loadInfo {
 void profile(set<Instruction*>::iterator IT, set<Instruction*>::iterator ITe )
 {
     int freq1;
-    int totalFreq;
-    instToInfo profData;
+    int totalStrides;
+    int topFreq;
+    loadInfo profData;
     int zeroDiff;
     map <Instruction*, loadInfo>::iterator findInfo;
     for(; IT != ITe; IT++){
+        freq1 = 0;
+        totalStrides = 0;
+        topFreq = 0;
+        zeroDiff = 0;
+
         findInfo = instToInfo.find(*IT);
         if(findInfo == instToInfo.end()){
             printf("couldn't find instruction\n");
             errs() << *IT << "\n";
         }
         profData = findInfo->second;
+        
         if(PI->getExecutionCount(IT->getParent()) =< FT)
             continue;
         //assume that loads passed in are in loops
         if(PI->getExecutionCount(Preheader) =< TT)
             continue;
-        freq1 = profData.freq1;
-        totalFreq = profData.freq1+profData.freq2+profData.freq3+profData.freq4;
+        freq1 = profData.freq[0]
+        totalStrides = profData.totalStrides;
+        for(unsigned int i = 0; i < profData.freq.size(); i++)
+            topFreq+=profData.freq[i];
         zeroDiff = profData.num_zero_diff;
         //cache line stuff...not sure yet?
         if(freq1/totalfreq > SSST_T){
             SSST_loads.insert(*IT);
             printf("adding to SSST\n");
         }
-        else if((profData.freq4/totalFreq > PMST_T) && zeroDIFF/totalFreq > PMST_T){
+        else if((topFreq/totalStrides > PMST_T) && zeroDIFF/totalStrides > PMST_T){
             PMST_loads.insert(*IT);
             printf("adding to PMST\n");
         }
-        else if((freq1/totalFreq > WSST_T) && (zeroDiff/totalFreq > PMST_T))
+        else if((freq1/totalStrides > WSST_T) && (zeroDiff/totalStrides > PMST_T))
         {
             WSST_loads.insert(*IT);
             printf("adding to WSST\n");
@@ -134,8 +143,13 @@ void insertPMST(Instruction *inst, double K)
 void insertWSST(Instruction *inst, double K)
 {
     BinaryOperator *subPtr = scratchAndSub(inst);
+    ICmpInst *ICmpPtr;
+    ICmpPtr = new ICmpInst(inst, 
+            ICmpInst::ICMP_EQ,
+            subPtr,
+            ,
+            "cmpweak");
     insertPrefetch(inst, K, subPtr);
-
 }
 
 void insertLoad(Instruction *inst)
@@ -164,3 +178,4 @@ int main()
     insertLoad();
     return 0;
 }
+#endif

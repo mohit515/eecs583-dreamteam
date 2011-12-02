@@ -11,8 +11,8 @@ using namespace std;
 
 unsigned int LoadStride::TOPCOUNT = 5; // number of top stride values to return
 
-LoadStride::LoadStride(uint32_t instrNum) {
-  instructionNumber = instrNum;
+LoadStride::LoadStride(uint32_t load_id) {
+  loadID = load_id;
   strideZeroCount = 0;
   strideZeroDifferenceCount = 0;
 }

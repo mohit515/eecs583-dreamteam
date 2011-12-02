@@ -144,6 +144,21 @@ static ostream &debug() {
     }
 }
 
+void LAMP_print_StrideProfile(ofstream &stream) {
+  // TODO: print output here for strides
+  map<uint32_t, LoadStride *>::iterator itStart, itEnd;
+  for (itStart = StrideProfiles.begin(), itEnd = StrideProfiles.end(); itStart != itEnd;
+       itStart++) {
+    uint32_t load_id = itStart->first;
+    LoadStride *loadStride = itStart->second;
+    
+    stream << load_id << "\t";
+    stream << loadStride->getStrideZeroCount() << "\t";
+ 
+    stream << endl;
+  }
+}
+
 void LAMP_print_stats(ofstream &stream) {
     stream<<setprecision(3);
     stream<<"run_time: "<<1.0*(clock()-lamp_stats.start_time)/CLOCKS_PER_SEC<<endl;
@@ -228,20 +243,7 @@ void LAMP_init_st() {
 }
 
 void LAMP_finish() {
-    // TODO: print output here for strides
-    map<uint32_t, LoadStride *>::iterator itStart, itEnd;
-    for (itStart = StrideProfiles.begin(), itEnd = StrideProfiles.end(); itStart != itEnd;
-         itStart++) {
-      vector< pair<long, long> > *topStrides = itStart->second->getTopStrideValues();
-      debug() << "Instr #: "<< itStart->first <<" , Zero Count: "<< itStart->second->getStrideZeroCount()<<endl;
-
-      for (int a=0; a<topStrides->size(); a++) {
-        debug() << "\t"<<topStrides->at(a).first<<" stride has count "<<topStrides->at(a).second <<endl;
-      }
-
-      debug() << endl;
-    }
-
+    LAMP_print_StrideProfile(*(lamp_params.lamp_out));
     *(lamp_params.lamp_out)<<*memoryProfiler;
     LAMP_print_stats(*(lamp_params.lamp_out));
 }
@@ -299,18 +301,18 @@ static void memory_profile(const uint32_t destId, const uint64_t addr) {
     //debug()<<endl;
 }
 
-void LAMP_StrideProfile(const uint32_t instr, const uint64_t addr) {
+void LAMP_StrideProfile(const uint32_t load_id, const uint64_t addr) {
   if (!LAMP_initialized) {
     return;
   }
 
   // TODO insert profiling code here for this instr with the load of addr
 
-  if (StrideProfiles.count(instr) == 0) {
-    StrideProfiles[instr] = new LoadStride(instr);
+  if (StrideProfiles.count(load_id) == 0) {
+    StrideProfiles[load_id] = new LoadStride(load_id);
   }
 
-  LoadStride *profiler = StrideProfiles[instr];
+  LoadStride *profiler = StrideProfiles[load_id];
   profiler->addAddress(addr);
 }
 

@@ -111,6 +111,9 @@ namespace {
 
 	bool doInitialization(Module &M) { return false; }
 	static unsigned int instruction_id;
+  
+  static unsigned int load_id; // counts the loads that we are analyzing bro
+
     static char ID;
 	LAMPProfiler() : FunctionPass(ID) 
 	{ //instruction_id = 0; 
@@ -121,6 +124,7 @@ namespace {
 
 char LAMPProfiler::ID = 0;
 unsigned int LAMPProfiler::instruction_id = -1;
+unsigned int LAMPProfiler::load_id = -1;
 
 static RegisterPass<LAMPProfiler>
 X("insert-lamp-profiling",
@@ -219,7 +223,10 @@ errs() << Args[0] <<" ("<< instruction_id <<") is: "<<*I<<"\n";
 				CallInst::Create(lampFuncs[index], Args.begin(), Args.end(), "", I);
 
         // TODO only call this function if this load has some freq count above some threshold (use edge profiling to figure this out)
-        CallInst::Create(StrideProfileFn, Args.begin(), Args.end(), "", I);
+        std::vector<Value*> StrideArgs(2);
+				StrideArgs[0] = ConstantInt::get(llvm::Type::getInt32Ty(F.getContext()), ++load_id);
+        StrideArgs[1] = Args[1];
+        CallInst::Create(StrideProfileFn, StrideArgs.begin(), StrideArgs.end(), "", I);
 			}
 				// Instrument Stores
 	    		else if (isa<StoreInst>(I))

@@ -28,13 +28,14 @@ class LoadStride {
       return &topStrideDifferenceValues;
     }
  
-    void updateTopStrideValues(long);
-    void updateTopStrideDifferenceValues(long);
+    uint32_t getLoadID() {
+      return loadID;
+    }
 
   private:
     static unsigned int TOPCOUNT;
 
-    uint32_t instructionNumber;
+    uint32_t loadID; 
 
     vector<unsigned long> addresses;
     vector<long> strideValues;
@@ -46,5 +47,8 @@ class LoadStride {
 
     vector< pair<long, long> > topStrideValues;
     vector< pair<long, long> > topStrideDifferenceValues;
+    
+    void updateTopStrideValues(long);
+    void updateTopStrideDifferenceValues(long);
 };
 #endif

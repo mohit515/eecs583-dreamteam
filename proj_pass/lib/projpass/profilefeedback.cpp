@@ -23,7 +23,9 @@ instToInfo getInfo(Instruction* inst)
     }
     return findInfo->second;
 }
-struct instToInfo{
+
+struct loadInfo {
+    int loadID;
     int freq1;
     int freq2;
     int freq3;

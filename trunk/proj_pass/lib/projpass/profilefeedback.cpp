@@ -11,21 +11,6 @@ using namespace llvm;
 #define WSST_T 10
 #define MAXPREFETCHDISTANCE 8
 
-set <Instruction*> SSST_loads;
-set <Instruction*> PMST_loads;
-set <Instruction*> WSST_loads;
-map <Instruction*, loadInfo> instToInfo;
-
-instToInfo getInfo(Instruction* inst)
-{
-    map <Instruction*, loadInfo>::iterator findInfo;
-    findInfo = instToInfo.find(inst);
-    if(findInfo == instToInfo.end()){
-        errs() << "couldnt find " << *inst << " in getInfo\n";
-    }
-    return findInfo->second;
-}
-
 struct loadInfo {
     int load_id;
     vector<long> top_freqs;
@@ -36,18 +21,34 @@ struct loadInfo {
     int trip_count;
 };
 
+set <Instruction*> SSST_loads;
+set <Instruction*> PMST_loads;
+set <Instruction*> WSST_loads;
+map <Instruction*, loadInfo> instToInfo;
+
+loadInfo getInfo(Instruction* inst)
+{
+    map <Instruction*, loadInfo>::iterator findInfo;
+    findInfo = instToInfo.find(inst);
+    if(findInfo == instToInfo.end()){
+        errs() << "couldnt find " << *inst << " in getInfo\n";
+    }
+    return findInfo->second;
+}
+
+
 void profile(set<Instruction*>::iterator IT, set<Instruction*>::iterator ITe )
 {
     int freq1;
-    int totalStrides;
-    int topFreq;
+    int num_strides;
+    int top_4_freq;
     loadInfo profData;
     int zeroDiff;
     map <Instruction*, loadInfo>::iterator findInfo;
     for(; IT != ITe; IT++){
         freq1 = 0;
-        totalStrides = 0;
-        topFreq = 0;
+        num_strides = 0;
+        top_4_freq = 0;
         zeroDiff = 0;
 
         findInfo = instToInfo.find(*IT);
@@ -63,20 +64,20 @@ void profile(set<Instruction*>::iterator IT, set<Instruction*>::iterator ITe )
         if(PI->getExecutionCount(Preheader) =< TT)
             continue;
         freq1 = profData.freq[0]
-        totalStrides = profData.totalStrides;
+        num_strides = profData.num_strides;
         for(unsigned int i = 0; i < profData.freq.size(); i++)
-            topFreq+=profData.freq[i];
+            top_4_freq+=profData.top_freqs[i];
         zeroDiff = profData.num_zero_diff;
         //cache line stuff...not sure yet?
-        if(freq1/totalfreq > SSST_T){
+        if(freq1/num_strides > SSST_T){
             SSST_loads.insert(*IT);
             printf("adding to SSST\n");
         }
-        else if((topFreq/totalStrides > PMST_T) && zeroDIFF/totalStrides > PMST_T){
+        else if((top_4_freq/num_strides > PMST_T) && zeroDiff/num_strides > PMST_T){
             PMST_loads.insert(*IT);
             printf("adding to PMST\n");
         }
-        else if((freq1/totalStrides > WSST_T) && (zeroDiff/totalStrides > PMST_T))
+        else if((freq1/num_strides > WSST_T) && (zeroDiff/num_strides > PMST_T))
         {
             WSST_loads.insert(*IT);
             printf("adding to WSST\n");
@@ -144,10 +145,12 @@ void insertWSST(Instruction *inst, double K)
 {
     BinaryOperator *subPtr = scratchAndSub(inst);
     ICmpInst *ICmpPtr;
+    loadInfo profData = getInfo(inst);
+    int profiled_stride = profData.profiled_stride;
     ICmpPtr = new ICmpInst(inst, 
             ICmpInst::ICMP_EQ,
             subPtr,
-            ,
+            Constant::get(inst->getPointerOperand->getType(), profiled_stride), 
             "cmpweak");
     insertPrefetch(inst, K, subPtr);
 }
@@ -157,9 +160,9 @@ void insertLoad(Instruction *inst)
    //determine K
    double K = 0;
    loadInfo profData = getInfo(inst);
-   double dataArea = profData.dominantStride * profData.tripCount;
+   double dataArea = profData.dominant_stride * profData.trip_count;
    double C = MAXPREFETCHDISTANCE;
-   K = min(profData.tripCount/TT, C);
+   K = min(profData.trip_count/TT, C);
    //we can incorporate cache stuff if need be
    //call the corresponding load list
    set <Instruction*>::iterator loadIT;
@@ -174,8 +177,9 @@ void insertLoad(Instruction *inst)
 }
 int main()
 {
-    profile();
-    insertLoad();
+    //this will be run on loop
+    profile(inst);
+    insertLoad(inst);
     return 0;
 }
 #endif

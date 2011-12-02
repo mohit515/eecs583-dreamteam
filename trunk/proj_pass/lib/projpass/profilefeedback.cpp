@@ -1,25 +1,10 @@
 #if FALSE
 #include <iostream>
 #include <vector>
+#include "profilefeedback.h"
 using namespace std;
 using namespace llvm;
 //need Profile info
-#define FT 10000
-#define TT 100
-#define SSST_T 10
-#define PMST_T 10
-#define WSST_T 10
-#define MAXPREFETCHDISTANCE 8
-
-struct loadInfo {
-    int load_id;
-    vector<long> top_freqs;
-    int num_zero_diff;
-    int profiled_stride;
-    int num_strides;
-    int dominant_stride;
-    int trip_count;
-};
 
 set <Instruction*> SSST_loads;
 set <Instruction*> PMST_loads;
@@ -37,54 +22,48 @@ loadInfo getInfo(Instruction* inst)
 }
 
 
-void profile(set<Instruction*>::iterator IT, set<Instruction*>::iterator ITe )
+void profile(Instruction *inst)
 {
-    int freq1;
-    int num_strides;
-    int top_4_freq;
-    loadInfo profData;
-    int zeroDiff;
+    int freq1 = 0;
+    int num_strides = 0;
+    int top_4_freq = 0;
+    loadInfo profData = 0;
+    int zeroDiff = 0;
     map <Instruction*, loadInfo>::iterator findInfo;
-    for(; IT != ITe; IT++){
-        freq1 = 0;
-        num_strides = 0;
-        top_4_freq = 0;
-        zeroDiff = 0;
-
-        findInfo = instToInfo.find(*IT);
-        if(findInfo == instToInfo.end()){
-            printf("couldn't find instruction\n");
-            errs() << *IT << "\n";
-        }
-        profData = findInfo->second;
+    
+    findInfo = instToInfo.find(*inst);
+    if(findInfo == instToInfo.end()){
+        printf("couldn't find instruction\n");
+        errs() << *inst << "\n";
+    }
+    profData = findInfo->second;
         
-        if(PI->getExecutionCount(IT->getParent()) =< FT)
-            continue;
-        //assume that loads passed in are in loops
-        if(PI->getExecutionCount(Preheader) =< TT)
-            continue;
-        freq1 = profData.freq[0]
-        num_strides = profData.num_strides;
-        for(unsigned int i = 0; i < profData.freq.size(); i++)
-            top_4_freq+=profData.top_freqs[i];
-        zeroDiff = profData.num_zero_diff;
-        //cache line stuff...not sure yet?
-        if(freq1/num_strides > SSST_T){
-            SSST_loads.insert(*IT);
-            printf("adding to SSST\n");
-        }
-        else if((top_4_freq/num_strides > PMST_T) && zeroDiff/num_strides > PMST_T){
-            PMST_loads.insert(*IT);
-            printf("adding to PMST\n");
-        }
-        else if((freq1/num_strides > WSST_T) && (zeroDiff/num_strides > PMST_T))
-        {
-            WSST_loads.insert(*IT);
-            printf("adding to WSST\n");
-        }
-        else{
-            printf("adding to none\n");
-        }
+    if(PI->getExecutionCount(inst->getParent()) =< FT)
+        continue;
+    //assume that loads passed in are in loops
+    if(PI->getExecutionCount(Preheader) =< TT)
+        continue;
+    freq1 = profData.freq[0]
+    num_strides = profData.num_strides;
+    for(unsigned int i = 0; i < profData.freq.size(); i++)
+        top_4_freq+=profData.top_freqs[i];
+    zeroDiff = profData.num_zero_diff;
+    //cache line stuff...not sure yet?
+    if(freq1/num_strides > SSST_T){
+        SSST_loads.insert(inst);
+        printf("adding to SSST\n");
+    }
+    else if((top_4_freq/num_strides > PMST_T) && zeroDiff/num_strides > PMST_T){
+        PMST_loads.insert(inst);
+        printf("adding to PMST\n");
+    }
+    else if((freq1/num_strides > WSST_T) && (zeroDiff/num_strides > PMST_T))
+    {
+        WSST_loads.insert(inst);
+        printf("adding to WSST\n");
+    }
+    else{
+        printf("adding to none\n");
     }
 }
 //insert an alloca to hold address
@@ -174,12 +153,5 @@ void insertLoad(Instruction *inst)
        insertWSST(inst, K);
    else
        errs() << "inst not inserted\n";
-}
-int main()
-{
-    //this will be run on loop
-    profile(inst);
-    insertLoad(inst);
-    return 0;
 }
 #endif

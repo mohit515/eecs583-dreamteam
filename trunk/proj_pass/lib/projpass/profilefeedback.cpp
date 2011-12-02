@@ -57,7 +57,7 @@ void profile(set<Instruction*>::iterator IT, set<Instruction*>::iterator ITe )
             continue;
         freq1 = profData.freq1;
         totalFreq = profData.freq1+profData.freq2+profData.freq3+profData.freq4;
-        zeroDiff = instToInfo.num_zero_diff;
+        zeroDiff = profData.num_zero_diff;
         //cache line stuff...not sure yet?
         if(freq1/totalfreq > SSST_T){
             SSST_loads.insert(*IT);
@@ -77,33 +77,72 @@ void profile(set<Instruction*>::iterator IT, set<Instruction*>::iterator ITe )
         }
     }
 }
+//insert an alloca to hold address
+//insert an alloca to hold stride
+//insert a subtract stride = addr(load) - scratch
+//scratch = addr(load)
+BinaryOperator *scratchAndSub(Instruction *inst)
+{
+    AllocaInst *scratchPtr;
+    StoreInst *storePtr;
+    BinaryOperator *subPtr;
+    //inst->bb->fcn->module
+    Module *M = Inst->getParent()->getParent()->getParent();
+    BasicBlock *entryBlock = inst->getParent()->getParent()->getEntryBlock().begin();
+    
+    StringRef X = "scratch";
+    StringRef Name = inst->getName();
+    //make alloca for scratch reg
+    Value *loadAddr = inst->getPointerOperand();
+    allocaPtr = new AllocaInst(loadAddr->getType(), 
+            X+Name, entryBlock); 
+
+    //store[scratchPtr] = loadAddr
+    storePtr = new StoreInst(scratchPtr, loadAddr, inst);
+    
+    //stride = addr(load) - scratch
+    subPtr = BinaryOperator::Create(Instruction::Sub,
+            loadAddr,
+            scratchPtr,
+            "stride",
+            inst
+            );
+    return subPtr;
+}
+
+//inserts prefetch(addr(inst)+sub*K)
+void insertPrefetch(Instruction *inst, double K, BinaryOperator *sub)
+{
+}
 //insert just prefetch(P+K*S)
 void insertSSST(Instruction *inst, double K)
 {
+    insertPrefetch(inst, K, NULL);
 }
-//insert an alloca to hold address
-//insert an alloca to hold stride
-//insert a subtract stride = addr(load) - scratch
-//scratch = addr(load)
+
+//scratch sub
 //prefetch(addr(load)+K*stride) before the load, K is rounded to a power of 2, 
 void insertPMST(Instruction *inst, double K)
 {
+    BinaryOperator *subPtr = scratchAndSub(inst);
+    insertPrefetch(inst, K, subPtr);
 }
-//insert an alloca to hold address
-//insert an alloca to hold stride
-//insert a subtract stride = addr(load) - scratch
-//scratch = addr(load)
+
+//scratch sub
 //p=(stride==profiled stride)
 //p?prefetch(P+K*stride)
-
 void insertWSST(Instruction *inst, double K)
 {
+    BinaryOperator *subPtr = scratchAndSub(inst);
+    insertPrefetch(inst, K, subPtr);
+
 }
+
 void insertLoad(Instruction *inst)
 {
    //determine K
    double K = 0;
-   instInfo profData = getInfo(inst);
+   loadInfo profData = getInfo(inst);
    double dataArea = profData.dominantStride * profData.tripCount;
    double C = MAXPREFETCHDISTANCE;
    K = min(profData.tripCount/TT, C);

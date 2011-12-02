@@ -1,4 +1,4 @@
-
+#include "llvm/Analysis/ProfileInfo.h"
 #include "llvm/Constants.h"
 #include "llvm/DerivedTypes.h"
 #include "llvm/Module.h"
@@ -96,6 +96,7 @@ namespace {
   class LAMPProfiler : public FunctionPass {
     bool runOnFunction(Function& F);
 
+  ProfileInfo *PI;
 	Constant* lampFuncs[9];
 	Constant* CallFn;
 	Constant* AllocFn;
@@ -107,7 +108,7 @@ namespace {
   public:
 	virtual void getAnalysisUsage(AnalysisUsage &AU) const {
 			AU.addRequired<TargetData>();
-        }
+  }
 
 	bool doInitialization(Module &M) { return false; }
 	static unsigned int instruction_id;

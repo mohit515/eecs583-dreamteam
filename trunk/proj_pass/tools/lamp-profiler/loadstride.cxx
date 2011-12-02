@@ -9,7 +9,7 @@
 #include "loadstride.hxx"
 using namespace std;
 
-unsigned int LoadStride::TOPCOUNT = 5; // number of top stride values to return
+unsigned int LoadStride::TOPCOUNT = 4; // number of top stride values to return
 
 LoadStride::LoadStride(uint32_t load_id) {
   loadID = load_id;

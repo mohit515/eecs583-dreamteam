@@ -1,5 +1,6 @@
 #if FALSE
 #include <iostream>
+#include <vector>
 using namespace std;
 using namespace llvm;
 //need Profile info
@@ -9,7 +10,6 @@ using namespace llvm;
 #define PMST_T 10
 #define WSST_T 10
 #define MAXPREFETCHDISTANCE 8
-#define NUMFREQ 4
 
 set <Instruction*> SSST_loads;
 set <Instruction*> PMST_loads;
@@ -27,13 +27,13 @@ instToInfo getInfo(Instruction* inst)
 }
 
 struct loadInfo {
-    int loadID;
-    vector<int> freq(NUMFREQ, 0);
+    int load_id;
+    vector<long> top_freqs;
     int num_zero_diff;
-    int profiledStride;
-    int totalStrides;
-    int dominantStride;
-    int tripCount;
+    int profiled_stride;
+    int num_strides;
+    int dominant_stride;
+    int trip_count;
 };
 
 void profile(set<Instruction*>::iterator IT, set<Instruction*>::iterator ITe )

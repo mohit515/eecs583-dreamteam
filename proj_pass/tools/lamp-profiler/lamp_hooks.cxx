@@ -154,7 +154,12 @@ void LAMP_print_StrideProfile(ofstream &stream) {
     
     stream << load_id << "\t";
     stream << loadStride->getStrideZeroCount() << "\t";
- 
+    
+    vector< pair<long, long> > *topStrides = loadStride->getTopStrideValues();
+    for (int i = 0; i < topStrides->size(); i++) {
+      stream << topStrides->at(i).second << "\t";
+    }
+
     stream << endl;
   }
 }
@@ -230,7 +235,7 @@ void LAMP_init(uint32_t num_instrs, uint32_t num_loops, uint64_t mem_gran, uint6
     pageCache = PageCache(num_instrs);
     Pages pages(memory_stamp);
     for (uint32_t i = 0; i < num_instrs; i++) {
-	pageCache[i] = pages;
+      pageCache[i] = pages;
     }
 
 		LAMP_initialized = 1;
